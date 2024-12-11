@@ -5,5 +5,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>To Do List</title>
     </head>
-    <body></body>
+    <body>
+        <header><h2>To Do List</h2></header>
+        <div class="sidebar">
+            <div class="my-day">My Day</div>
+            <div class="important">Important</div>
+            <hr />
+            <div class="lists">
+                <div class="tasks">Tasks</div>
+            </div>
+            <div class="new-list">New List</div>
+        </div>
+        <div class="main">
+            <div class="new-task">
+                <form method="get">
+                    <div class="upper-section">
+                        <input type="text" placeholder="Task Title" />
+                        <div class="dropdown">
+                            <input type="image" alt="" class="dropdown-icon" />
+                        </div>
+                    </div>
+                    <div class="lower-section">
+                        <div class="icons">
+                            <input type="image" alt="" class="calendar" />
+                            <input
+                                type="image"
+                                alt=""
+                                class="important-icon-hollow"
+                            />
+                        </div>
+                        <button type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+            <div class="task-details">
+                <div class="title">Title</div>
+                <div class="due-date">Due Date</div>
+                <div class="importance">Importance</div>
+            </div>
+            <div class="task-list-container">
+                <ul class="task-list">
+                    <li class="task-1">
+                        <input
+                            type="checkbox"
+                            name="task-1-checkbox"
+                            id="task-1-checkbox"
+                        />
+                        <div class="task-1-title">Some Task</div>
+                        <div class="task-1-date">DD/MM/YY</div>
+                        <div class="task-1-importance">
+                            <img alt="" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
 </html>
