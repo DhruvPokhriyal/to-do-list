@@ -82,10 +82,15 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "wdth" 100;
+    color: var(--font-color);
 }
 
 header {
     grid-area: head;
+    background-color: var(--theme-col-1);
+    display: flex;
+    align-items: center;
+    padding: 10px;
 }
 
 .sidebar {
