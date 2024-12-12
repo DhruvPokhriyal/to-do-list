@@ -205,6 +205,13 @@ hr {
 }
 
 .icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.important-icon-hollow {
+    margin-top: -2px;
 }
 
 .add-button {
