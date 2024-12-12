@@ -311,6 +311,18 @@ ul li > * {
     background-size: 14px 10px;
 }
 
+.task-name {
+    padding-left: 8%;
+}
+
+.task-date {
+    padding-left: 22%;
+}
+
+.task-imp {
+    justify-content: center;
+}
+
 .active {
     background-color: var(--active-col);
 }
