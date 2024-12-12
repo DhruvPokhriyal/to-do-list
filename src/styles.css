@@ -149,6 +149,16 @@ hr {
     padding: 20px;
 }
 
+.main img {
+    filter: invert(35%) sepia(11%) saturate(704%) hue-rotate(327deg)
+        brightness(90%) contrast(83%);
+}
+
+.main img:hover {
+    filter: invert(54%) sepia(6%) saturate(1530%) hue-rotate(332deg)
+        brightness(93%) contrast(84%);
+}
+
 .new-task {
     display: grid;
     background-color: var(--theme-col-1);
@@ -208,6 +218,12 @@ hr {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.icons button {
+    background-color: var(--theme-col-1);
+    outline: none;
+    border: none;
 }
 
 .important-icon-hollow {
