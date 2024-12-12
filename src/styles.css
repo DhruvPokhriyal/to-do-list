@@ -183,6 +183,11 @@ hr {
     align-items: center;
 }
 
+.upper-section button img:hover {
+    filter: invert(54%) sepia(6%) saturate(1530%) hue-rotate(332deg)
+        brightness(93%) contrast(84%);
+}
+
 .upper-section input,
 .upper-section button {
     outline: none;
