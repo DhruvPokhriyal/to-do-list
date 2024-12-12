@@ -220,6 +220,8 @@ hr {
     background-color: var(--theme-col-2);
     border-radius: 21px;
     padding: 4px 20px;
+    color: var(--font-color);
+    font-weight: 600;
 }
 
 .add-button:hover {
