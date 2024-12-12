@@ -273,10 +273,15 @@ ul {
 
 ul li {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr 2fr;
+    grid-template-columns: 1fr 3fr 3fr 3fr;
     padding: 8px 20px;
     background-color: var(--theme-col-1);
     border-radius: 21px;
+}
+
+ul li > * {
+    display: flex;
+    align-items: center;
 }
 
 .checkbox {
