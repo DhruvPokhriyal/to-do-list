@@ -150,6 +150,28 @@ hr {
 }
 
 .new-task {
+    display: grid;
+    background-color: var(--theme-col-1);
+    padding: 8px 20px;
+    border-radius: 21px;
+}
+
+.upper-section {
+    display: grid;
+    position: relative;
+    width: 100%;
+}
+
+.upper-section input {
+    width: 100%;
+    background-color: var(--theme-col-2);
+}
+
+.upper-section button {
+    position: absolute;
+    width: 48px;
+    height: 29px;
+    left: 96%;
 }
 
 .task-details {
