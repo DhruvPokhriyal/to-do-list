@@ -28,16 +28,22 @@
             <div class="new-task">
                 <form method="get">
                     <div class="upper-section">
-                        <input type="text" placeholder="Task Title" />
-                        <div class="dropdown">
+                        <label for="tast-title">
                             <input
-                                type="image"
-                                src="./assets/images/dropdown.svg"
-                                alt=""
-                                class="dropdown-icon"
-                                height="20px"
+                                type="text"
+                                placeholder="Task Title"
+                                id="task-title"
                             />
-                        </div>
+                            <div class="dropdown">
+                                <button type="button">
+                                    <img
+                                        src="./assets/images/dropdown.svg"
+                                        alt=""
+                                        height="20px"
+                                    />
+                                </button>
+                            </div>
+                        </label>
                     </div>
                     <div class="lower-section">
                         <div class="icons">
