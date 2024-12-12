@@ -113,7 +113,6 @@ header {
     justify-content: center;
     align-items: stretch;
     text-align: center;
-    gap: 8px;
 }
 
 hr {
@@ -129,6 +128,13 @@ hr {
 .lists > div,
 .new-list {
     padding: 8px;
+}
+
+.upper-sidebar > div:hover:not(.active),
+.lists > div:hover:not(.active),
+.new-list:hover:not(.active) {
+    padding: 8px;
+    background-color: #e8f5e7;
 }
 
 .new-list {
