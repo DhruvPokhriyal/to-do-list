@@ -146,6 +146,25 @@ hr {
     display: grid;
     grid-template-rows: auto auto 1fr;
     gap: 10%;
+    padding: 20px;
+}
+
+.new-task {
+}
+
+.task-details {
+    display: grid;
+    background-color: var(--theme-col-1);
+    border-radius: 21px;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 8px 20px;
+}
+
+.task-details > div {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 ul {
