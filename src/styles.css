@@ -143,6 +143,9 @@ hr {
 
 .main {
     grid-area: main;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 10%;
 }
 
 ul {
