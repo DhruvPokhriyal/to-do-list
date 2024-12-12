@@ -145,6 +145,10 @@ hr {
     grid-area: main;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .active {
     background-color: var(--active-col);
 }
