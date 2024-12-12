@@ -326,3 +326,7 @@ ul li > * {
 .active {
     background-color: var(--active-col);
 }
+
+#dueDate {
+    display: none;
+}
