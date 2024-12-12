@@ -194,6 +194,16 @@ hr {
     border: none;
 }
 
+.lower-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 10px 20px;
+    border-radius: 21px;
+    width: 100%;
+    background-color: var(--theme-col-1);
+}
+
 .task-details {
     display: grid;
     background-color: var(--theme-col-1);
