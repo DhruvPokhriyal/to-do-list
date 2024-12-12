@@ -205,6 +205,17 @@ hr {
     border: none;
 }
 
+#desc {
+    resize: none;
+    /* border-radius: 21px; */
+    border: none;
+    outline: none;
+    background-color: var(--theme-col-2);
+    border-top: 1px solid var(--font-color);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
 .lower-section {
     position: relative;
     display: grid;
