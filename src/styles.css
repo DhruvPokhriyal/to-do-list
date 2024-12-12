@@ -131,6 +131,10 @@ hr {
     padding: 8px;
 }
 
+.new-list {
+    font-weight: bold;
+}
+
 .main {
     grid-area: main;
 }
