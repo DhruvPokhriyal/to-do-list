@@ -125,6 +125,12 @@ hr {
     justify-content: start !important;
 }
 
+.upper-sidebar > div,
+.lists > div,
+.new-list {
+    padding: 8px;
+}
+
 .main {
     grid-area: main;
 }
