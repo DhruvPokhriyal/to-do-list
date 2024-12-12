@@ -204,6 +204,21 @@ hr {
     background-color: var(--theme-col-1);
 }
 
+.icons {
+}
+
+.add-button {
+    border: none;
+    outline: none;
+    background-color: var(--theme-col-2);
+    border-radius: 21px;
+    padding: 4px 20px;
+}
+
+.add-button:hover {
+    background-color: var(--active-col);
+}
+
 .task-details {
     display: grid;
     background-color: var(--theme-col-1);
