@@ -71,8 +71,8 @@ modalForm.addEventListener("submit", (e) => {
     listContainer.appendChild(deleteButton);
     lists.appendChild(listContainer);
     deleteButton.addEventListener("click", () => {
-        const container = deleteButton.parentNode;
-        container.parentNode.removeChild(container);
+        lists.removeChild(listContainer);
+        delete all_list[listName];
     });
     modalForm.reset();
     modal.close();
