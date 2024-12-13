@@ -345,7 +345,8 @@ hr {
     opacity: 0.9;
 }
 
-input {
+input,
+textarea {
     color: var(--font-color);
 }
 
