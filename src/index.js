@@ -18,6 +18,8 @@ class Task {
     }
 }
 
+// Sidebar (Make this code modular)
+
 const lists = document.querySelector(".lists");
 const modal = document.querySelector(".modal");
 
@@ -28,35 +30,35 @@ newListButton.addEventListener("click", () => {
 
 const modalForm = modal.querySelector("form");
 const closeButton = modalForm.querySelector(".close");
+
 closeButton.addEventListener("click", () => {
     modalForm.reset();
     modal.close();
 });
-modalForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const listName = modalForm.querySelector("input").value.trim();
-    console.log(listName);
 
+function uniqueListCheck(listName, temp, modalForm) {
     if (!listName) {
         alert("List name cannot be empty");
         modalForm.reset();
-        return;
+        return false;
     }
     for (const key in all_list) {
         if (listName == key) {
             alert("List name already exist.");
             modalForm.reset();
-            return;
+            return false;
         }
     }
 
-    all_list[listName] = [];
-    const temp = listName.replace(/\s+/g, "-");
     if (!temp) {
         alert("Invalid Name");
         modalForm.reset();
-        return;
+        return false;
     }
+    return true;
+}
+
+function addListInDom(listName, temp, modalForm) {
     const listContainer = document.createElement("div");
     listContainer.classList.add(temp);
     listContainer.textContent = listName;
@@ -76,9 +78,29 @@ modalForm.addEventListener("submit", (e) => {
     });
     modalForm.reset();
     modal.close();
+}
+
+function addNewList(listName, temp, modalForm) {
+    let unique = uniqueListCheck(listName, temp, modalForm);
+    if (unique == false) return false;
+    all_list[listName] = [];
+    addListInDom(listName, temp, modalForm);
+    return true;
+}
+
+modalForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const listName = modalForm.querySelector("input").value.trim();
+    const temp = listName.replace(/\s+/g, "-");
+    let status = addNewList(listName, temp, modalForm);
+    if (status == false) return;
 });
 
 const taskForm = document.querySelector("#taskForm");
+
+//main
+
+// New Task
 
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
