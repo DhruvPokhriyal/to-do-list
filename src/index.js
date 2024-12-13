@@ -1,11 +1,7 @@
 import "./styles.css";
 import binImage from "./assets/images/trash.png";
 
-const myTask = [];
-const importantTask = [];
-const tasks = [];
-
-const all_list = { myTask, importantTask, tasks };
+const all_list = { myTask: [], importantTask: [], tasks: [] };
 
 const isImportant = false;
 
@@ -58,6 +54,11 @@ function uniqueListCheck(listName, temp, modalForm) {
     return true;
 }
 
+function deleteButtonFunctionality(listName, listContainer, lists) {
+    lists.removeChild(listContainer);
+    delete all_list[listName];
+}
+
 function addListInDom(listName, temp, modalForm) {
     const listContainer = document.createElement("div");
     listContainer.classList.add(temp);
@@ -72,10 +73,10 @@ function addListInDom(listName, temp, modalForm) {
     deleteButton.appendChild(deleteImg);
     listContainer.appendChild(deleteButton);
     lists.appendChild(listContainer);
-    deleteButton.addEventListener("click", () => {
-        lists.removeChild(listContainer);
-        delete all_list[listName];
-    });
+    deleteButton.addEventListener(
+        "click",
+        deleteButtonFunctionality.bind(null, listName, listContainer, lists)
+    );
     modalForm.reset();
     modal.close();
 }
