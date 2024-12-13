@@ -126,6 +126,7 @@ hr {
 .lists {
     margin-top: 20px;
     justify-content: start !important;
+    overflow-y: auto;
 }
 
 .upper-sidebar > div,
