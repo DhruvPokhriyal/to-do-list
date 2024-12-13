@@ -1,4 +1,5 @@
 import "./styles.css";
+import binImage from "./assets/images/trash.png";
 
 const myTask = [];
 const importantTask = [];
@@ -38,6 +39,22 @@ newListButton.addEventListener("click", () => {
                 modalForm.reset();
             } else {
                 all_list[listName] = [];
+                let temp = listName.replace(" ", "-");
+                const listContainer = document.createElement("div");
+                listContainer.classList.add(temp);
+                listContainer.textContent = listName;
+                const deleteButton = document.createElement("button");
+                deleteButton.classList.add("delete");
+                deleteButton.type = "button";
+                const deleteImg = document.createElement("img");
+                deleteImg.src = binImage;
+                deleteImg.height = "20";
+                deleteImg.alt = "Delete Icon";
+                deleteButton.appendChild(deleteImg);
+                listContainer.appendChild(deleteButton);
+                lists.appendChild(listContainer);
+                modalForm.reset();
+                modal.close();
             }
         }
     });
