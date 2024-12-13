@@ -1,12 +1,13 @@
 import "./styles.css";
 import binImage from "./assets/images/trash.png";
 
-const all_list = { myTask: [], importantTask: [], tasks: [] };
+const all_list = { my_day: [], important: [], tasks: [] };
 
 const isImportant = false;
 
 class Task {
     constructor(title, desc, dueDate, importance) {
+        this.status = false;
         this.title = title;
         this.desc = desc;
         this.dueDate = dueDate;
@@ -14,8 +15,7 @@ class Task {
     }
 }
 
-// Sidebar (Make this code modular)
-
+// Sidebar
 const lists = document.querySelector(".lists");
 const modal = document.querySelector(".modal");
 
@@ -92,16 +92,38 @@ function addNewList(listName, temp, modalForm) {
 modalForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const listName = modalForm.querySelector("input").value.trim();
-    const temp = listName.replace(/\s+/g, "-");
+    const temp = listName.replace(/\s+/g, "_");
     let status = addNewList(listName, temp, modalForm);
     if (status == false) return;
 });
 
-const taskForm = document.querySelector("#taskForm");
+const listArr = Array.from(
+    document.querySelectorAll(".my-day,.important,.lists > div")
+);
+
+for (const list of listArr) {
+    list.addEventListener("click", () => {
+        const listClass = list.className;
+        const classList = listClass.split(" ");
+        if (classList.length == 2) {
+            return;
+        } else {
+            for (let key in all_list) {
+                let temp = key.replace(/\s+/g, "_");
+                if (temp == listClass) {
+                    const taskList = document.querySelector(".task-list");
+                    taskList.innerHTML = "";
+                }
+            }
+        }
+    });
+}
 
 //main
 
 // New Task
+
+const taskForm = document.querySelector("#taskForm");
 
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
