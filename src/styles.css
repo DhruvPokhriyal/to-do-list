@@ -338,3 +338,12 @@ ul li > * {
 #dueDate {
     display: none;
 }
+
+::placeholder {
+    color: var(--font-color);
+    opacity: 0.9;
+}
+
+input {
+    color: var(--font-color);
+}
