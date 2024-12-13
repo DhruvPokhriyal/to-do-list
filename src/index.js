@@ -14,3 +14,13 @@ class Task {
         this.importance = importance;
     }
 }
+
+const lists = document.querySelector(".lists");
+
+const newListButton = document.querySelector(".new-list");
+
+const taskForm = document.querySelector("#taskForm");
+
+taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+});
