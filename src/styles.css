@@ -364,7 +364,12 @@ textarea {
     display: none;
     height: 70px;
     width: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+
+.hide::-webkit-scrollbar {
+    border-radius: 5px;
 }
 
 .task-name:hover > .hide {
