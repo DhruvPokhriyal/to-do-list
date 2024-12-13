@@ -74,6 +74,14 @@ modalForm.addEventListener("submit", (e) => {
     modal.close();
 });
 
+const deleteButton = Array.from(document.querySelectorAll(".delete"));
+for (const button of deleteButton) {
+    button.addEventListener("click", () => {
+        const container = button.parentNode;
+        container.parentNode.removeChild(container);
+    });
+}
+
 const taskForm = document.querySelector("#taskForm");
 
 taskForm.addEventListener("submit", (e) => {
