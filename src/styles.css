@@ -62,17 +62,19 @@ h6 {
 }
 
 :root {
-    --font-color: #685752;
-    --theme-col-1: #8eb486;
-    --theme-col-2: #ddeedf;
-    --active-col: #f2f9f1;
-    --sidebar-hover: #e8f5e7;
+    --font-color: #eeeeee;
+    --theme-col-1: #393e46;
+    --theme-col-2: #1b263b;
+    --theme-col-3: #0d1b2a;
+    --active-col: #0077ff;
+    --btn-col: #0056b3;
+    --sidebar-hover: #3a6ea5;
 }
 
 body {
     height: 100vh;
     width: 100%;
-    background-color: var(--active-col);
+    background-color: var(--theme-col-3);
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 9fr;
@@ -89,7 +91,7 @@ body {
 
 header {
     grid-area: head;
-    background-color: var(--theme-col-1);
+    background-color: var(--theme-col-2);
     display: flex;
     align-items: center;
     padding: 10px;
@@ -152,18 +154,18 @@ hr {
 }
 
 .main img {
-    filter: invert(35%) sepia(11%) saturate(704%) hue-rotate(327deg)
-        brightness(90%) contrast(83%);
+    filter: invert(20%) sepia(30%) saturate(7314%) hue-rotate(201deg)
+        brightness(95%) contrast(101%);
 }
 
 .main img:hover {
-    filter: invert(54%) sepia(6%) saturate(1530%) hue-rotate(332deg)
-        brightness(93%) contrast(84%);
+    filter: invert(27%) sepia(71%) saturate(3005%) hue-rotate(203deg)
+        brightness(104%) contrast(103%);
 }
 
 .new-task {
     display: grid;
-    background-color: var(--theme-col-1);
+    background-color: var(--theme-col-2);
     /* padding: 8px 20px; */
     border-radius: 21px;
 }
@@ -189,7 +191,7 @@ hr {
     left: 1172px;
     top: 8px;
     z-index: 10;
-    background-color: var(--theme-col-2);
+    background-color: var(--btn-col) !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,7 +221,6 @@ hr {
     padding: 10px 20px;
     border-radius: 21px;
     width: 100%;
-    background-color: var(--theme-col-1);
 }
 
 .icons {
@@ -229,7 +230,7 @@ hr {
 }
 
 .icons button {
-    background-color: var(--theme-col-1);
+    background-color: var(--theme-col-2);
     outline: none;
     border: none;
 }
@@ -241,7 +242,7 @@ hr {
 .add-button {
     border: none;
     outline: none;
-    background-color: var(--theme-col-2);
+    background-color: var(--btn-col);
     border-radius: 21px;
     padding: 4px 20px;
     color: var(--font-color);
@@ -307,13 +308,13 @@ ul li > * {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    border: 1px solid var(--font-color);
+    border: 1px solid var(--active-col);
     background: transparent no-repeat center;
 }
 
 .checkbox__input:checked + .checkbox__inner {
-    border-color: var(--font-color);
-    background-color: var(--font-color);
+    border-color: var(--active-col);
+    background-color: var(--btn-col);
     background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='14px' height='10px' viewBox='0 0 14 10' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 59.1 (86144) - https://sketch.com --%3E%3Ctitle%3Echeck%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='ios_modification' transform='translate(-27.000000, -191.000000)' fill='%23FFFFFF' fill-rule='nonzero'%3E%3Cg id='Group-Copy' transform='translate(0.000000, 164.000000)'%3E%3Cg id='ic-check-18px' transform='translate(25.000000, 23.000000)'%3E%3Cpolygon id='check' points='6.61 11.89 3.5 8.78 2.44 9.84 6.61 14 15.56 5.05 14.5 4'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     background-size: 14px 10px;
 }
