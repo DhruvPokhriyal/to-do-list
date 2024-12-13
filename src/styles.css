@@ -377,3 +377,32 @@ input {
     top: -70px;
     left: 27px;
 }
+
+.lists > div {
+    position: relative;
+}
+
+.lists > div > button {
+    display: none;
+    background-color: var(--theme-col-2);
+    border: none;
+    outline: none;
+}
+
+.lists > div:hover > button {
+    background-color: var(--sidebar-hover);
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.list > div > button {
+    background-color: var(--theme-col-2);
+    border: none;
+}
+
+.lists > div > button > img {
+    filter: invert(98%) sepia(4%) saturate(464%) hue-rotate(212deg)
+        brightness(115%) contrast(87%);
+}
