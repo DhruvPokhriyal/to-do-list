@@ -353,3 +353,26 @@ input {
     color: var(--font-color);
     border: none;
 }
+
+.task-name {
+    position: relative;
+}
+
+.hide {
+    display: none;
+    height: 70px;
+    width: 500px;
+    overflow-y: scroll;
+}
+
+.task-name:hover > .hide {
+    display: block;
+    position: absolute;
+    background-color: var(--font-color);
+    color: var(--theme-col-3);
+    border: none;
+    outline: none;
+    padding: 12px;
+    top: -70px;
+    left: 27px;
+}
