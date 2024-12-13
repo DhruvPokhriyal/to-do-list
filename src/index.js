@@ -70,17 +70,13 @@ modalForm.addEventListener("submit", (e) => {
     deleteButton.appendChild(deleteImg);
     listContainer.appendChild(deleteButton);
     lists.appendChild(listContainer);
+    deleteButton.addEventListener("click", () => {
+        const container = deleteButton.parentNode;
+        container.parentNode.removeChild(container);
+    });
     modalForm.reset();
     modal.close();
 });
-
-const deleteButton = Array.from(document.querySelectorAll(".delete"));
-for (const button of deleteButton) {
-    button.addEventListener("click", () => {
-        const container = button.parentNode;
-        container.parentNode.removeChild(container);
-    });
-}
 
 const taskForm = document.querySelector("#taskForm");
 
