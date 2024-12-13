@@ -38,25 +38,26 @@ newListButton.addEventListener("click", () => {
                 alert("List name already exist.");
                 modalForm.reset();
             } else {
-                all_list[listName] = [];
-                let temp = listName.replace(" ", "-");
-                const listContainer = document.createElement("div");
-                listContainer.classList.add(temp);
-                listContainer.textContent = listName;
-                const deleteButton = document.createElement("button");
-                deleteButton.classList.add("delete");
-                deleteButton.type = "button";
-                const deleteImg = document.createElement("img");
-                deleteImg.src = binImage;
-                deleteImg.height = "20";
-                deleteImg.alt = "Delete Icon";
-                deleteButton.appendChild(deleteImg);
-                listContainer.appendChild(deleteButton);
-                lists.appendChild(listContainer);
-                modalForm.reset();
-                modal.close();
+                break;
             }
         }
+        all_list[listName] = [];
+        let temp = listName.replace(" ", "-");
+        const listContainer = document.createElement("div");
+        listContainer.classList.add(temp);
+        listContainer.textContent = listName;
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete");
+        deleteButton.type = "button";
+        const deleteImg = document.createElement("img");
+        deleteImg.src = binImage;
+        deleteImg.height = "20";
+        deleteImg.alt = "Delete Icon";
+        deleteButton.appendChild(deleteImg);
+        listContainer.appendChild(deleteButton);
+        lists.appendChild(listContainer);
+        modalForm.reset();
+        modal.close();
     });
 });
 
