@@ -347,3 +347,9 @@ ul li > * {
 input {
     color: var(--font-color);
 }
+
+.new-list {
+    background-color: var(--theme-col-2);
+    color: var(--font-color);
+    border: none;
+}
