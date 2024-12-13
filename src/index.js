@@ -24,41 +24,54 @@ const modal = document.querySelector(".modal");
 const newListButton = document.querySelector(".new-list");
 newListButton.addEventListener("click", () => {
     modal.showModal();
-    const modalForm = modal.querySelector("form");
-    const closeButton = modalForm.querySelector(".close");
-    closeButton.addEventListener("click", () => {
+});
+
+const modalForm = modal.querySelector("form");
+const closeButton = modalForm.querySelector(".close");
+closeButton.addEventListener("click", () => {
+    modalForm.reset();
+    modal.close();
+});
+modalForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const listName = modalForm.querySelector("input").value.trim();
+    console.log(listName);
+
+    if (!listName) {
+        alert("List name cannot be empty");
         modalForm.reset();
-        modal.close();
-    });
-    modalForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const listName = modalForm.querySelector("input").value;
-        for (const key in all_list) {
-            if (listName == key) {
-                alert("List name already exist.");
-                modalForm.reset();
-            } else {
-                break;
-            }
+        return;
+    }
+    for (const key in all_list) {
+        if (listName == key) {
+            alert("List name already exist.");
+            modalForm.reset();
+            return;
         }
-        all_list[listName] = [];
-        let temp = listName.replace(" ", "-");
-        const listContainer = document.createElement("div");
-        listContainer.classList.add(temp);
-        listContainer.textContent = listName;
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("delete");
-        deleteButton.type = "button";
-        const deleteImg = document.createElement("img");
-        deleteImg.src = binImage;
-        deleteImg.height = "20";
-        deleteImg.alt = "Delete Icon";
-        deleteButton.appendChild(deleteImg);
-        listContainer.appendChild(deleteButton);
-        lists.appendChild(listContainer);
+    }
+
+    all_list[listName] = [];
+    const temp = listName.replace(/\s+/g, "-");
+    if (!temp) {
+        alert("Invalid Name");
         modalForm.reset();
-        modal.close();
-    });
+        return;
+    }
+    const listContainer = document.createElement("div");
+    listContainer.classList.add(temp);
+    listContainer.textContent = listName;
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete");
+    deleteButton.type = "button";
+    const deleteImg = document.createElement("img");
+    deleteImg.src = binImage;
+    deleteImg.height = "20";
+    deleteImg.alt = "Delete Icon";
+    deleteButton.appendChild(deleteImg);
+    listContainer.appendChild(deleteButton);
+    lists.appendChild(listContainer);
+    modalForm.reset();
+    modal.close();
 });
 
 const taskForm = document.querySelector("#taskForm");
