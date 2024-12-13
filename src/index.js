@@ -16,6 +16,8 @@ class Task {
 }
 
 const lists = document.querySelector(".lists");
+const modal = document.querySelector(".modal");
+modal.showModal();
 
 const newListButton = document.querySelector(".new-list");
 

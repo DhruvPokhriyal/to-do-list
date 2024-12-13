@@ -407,3 +407,85 @@ textarea {
     filter: invert(98%) sepia(4%) saturate(464%) hue-rotate(212deg)
         brightness(115%) contrast(87%);
 }
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 320px;
+    outline: none;
+    border: none;
+    background-color: var(--font-color);
+    border-radius: 20px;
+}
+
+.modal::backdrop {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal form {
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+    color: var(--theme-col-3);
+}
+
+.modal form > * {
+    display: grid;
+    justify-content: center;
+    gap: 8px;
+}
+
+.modal form > .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px !important;
+}
+
+.modal form h3,
+.modal label,
+.modal button {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.modal input {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 5px;
+    border: none;
+    background-color: var(--theme-col-1);
+    outline-color: var(--theme-col-1);
+    border-radius: 5px;
+}
+
+.modal input:active,
+.modal input:focus {
+    outline: 1px solid;
+}
+
+.modal button {
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #e5e7ec;
+}
+
+.modal #submit-button {
+    background-color: var(--active-col);
+    color: var(--font-color);
+}
+
+.modal #submit-button:hover {
+    background-color: var(--btn-col);
+}
+
+.modal button:hover {
+    background-color: #d7dae1;
+}

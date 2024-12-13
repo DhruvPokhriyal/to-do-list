@@ -32,6 +32,18 @@
                 </div>
             </div>
             <button type="button" class="new-list">New List</button>
+            <dialog class="modal" id="modal">
+                <form method="get">
+                    <label for="task-list-name">List Name</label>
+                    <input type="text" id="task-list-name" />
+                    <div class="buttons">
+                        <button type="button" class="close">Close</button>
+                        <button type="submit" class="submit" id="submit-button">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </dialog>
         </div>
         <div class="main">
             <div class="new-task">
