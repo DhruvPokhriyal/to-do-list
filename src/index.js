@@ -1,3 +1,10 @@
 import "./styles.css";
 
-console.log("Hello World");
+class Task {
+    constructor(title, desc, dueDate, importance) {
+        this.title = title;
+        this.desc = desc;
+        this.dueDate = dueDate;
+        this.importance = importance;
+    }
+}
