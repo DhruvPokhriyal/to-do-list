@@ -268,7 +268,7 @@ hr {
     font-size: 18px;
 }
 
-ul {
+.task-list {
     list-style-type: none;
     display: grid;
     grid-template-rows: 50px;
@@ -279,7 +279,7 @@ ul {
     gap: 14px;
 }
 
-ul li {
+.task-list li {
     display: grid;
     grid-template-columns: 1fr 3fr 3fr 3fr;
     padding: 8px 20px;
@@ -287,7 +287,7 @@ ul li {
     border-radius: 21px;
 }
 
-ul li > * {
+.task-list li > * {
     display: flex;
     align-items: center;
 }
