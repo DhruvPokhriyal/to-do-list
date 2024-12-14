@@ -135,11 +135,12 @@ modalForm.addEventListener("submit", (e) => {
 // Add functionality to load My Day list on load
 
 const listArr = Array.from(
-    document.querySelectorAll(".my-day,.important,.lists > div")
+    document.querySelectorAll(".my_day,.important,.lists > div")
 );
 
-function activeList(listClass) {
-    const classList = listClass.split(" ");
+let currentlyActive;
+
+function activeList(classList) {
     if (classList.length == 2) {
         return true;
     } else {
@@ -149,10 +150,24 @@ function activeList(listClass) {
 
 for (const list of listArr) {
     list.addEventListener("click", () => {
+        for (let element of listArr) {
+            let elementClass = element.className;
+            let classArr = elementClass.split(" ");
+            if (classArr.length == 2) {
+                currentlyActive = classArr[0];
+                break;
+            }
+        }
+
         const listClass = list.className;
-        if (activeList(listClass)) {
+        const classList = listClass.split(" ");
+        if (classList.length == 2) {
             return;
         } else {
+            document
+                .querySelector("." + currentlyActive)
+                .classList.remove("active");
+            list.classList.add("active");
             for (let key in all_list) {
                 let temp = key.replace(/\s+/g, "_");
                 if (temp == listClass) {
