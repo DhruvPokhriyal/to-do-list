@@ -173,7 +173,7 @@ for (const list of listArr) {
                             `task-${taskNo}-importance`,
                             "task-imp"
                         );
-                        const impImg = document.querySelector("img");
+                        const impImg = document.createElement("img");
                         impImg.height = "20";
                         if (entry.importance == true) {
                             impImg.src = filledStar;
