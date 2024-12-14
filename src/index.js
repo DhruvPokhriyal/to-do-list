@@ -6,7 +6,7 @@ import calendar from "./assets/images/calendar.svg";
 
 // Add functionality to retrieve data from local storage and add data into local storage
 
-const isImportant = false;
+let isImportant = false;
 
 let currentlyActive;
 
@@ -278,6 +278,15 @@ for (const list of listArr) {
 
 const taskForm = document.querySelector("#taskForm");
 
+const importantButton = document.querySelector(".imp-icon-hollow-btn");
+importantButton.addEventListener("click", () => {
+    isImportant = true;
+    const buttonImg = importantButton.querySelector("img");
+    buttonImg.src = filledStar;
+});
+
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const taskTitle = taskForm.querySelector("#task-title").value;
+    const taskDesc = taskForm.querySelector("textarea");
 });
