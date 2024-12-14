@@ -341,6 +341,14 @@ hr {
     color: var(--font-color);
     outline: none;
     border: none;
+    appearance: none !important;
+    -webkit-appearance: none;
+    opacity: 0;
+}
+
+#dueDate + span {
+    position: absolute;
+    pointer-events: none;
 }
 
 input[type="date"]::-webkit-datetime-edit {
