@@ -4,6 +4,8 @@ import filledStar from "./assets/images/filled_star.svg";
 import hollowStar from "./assets/images/hollow_star.svg";
 import calendar from "./assets/images/calendar.svg";
 
+// Add functionality to retrieve data from local storage and add data into local storage
+
 const all_list = { my_day: [], important: [], tasks: [] };
 
 const isImportant = false;
@@ -22,7 +24,23 @@ class Task {
 
 all_list.important.push(
     new Task(
-        "Dummy",
+        "Dummy_1",
+        "This is some testing data that i am writing here",
+        "16/12/24",
+        false
+    )
+);
+all_list.my_day.push(
+    new Task(
+        "Dummy_2",
+        "This is some testing data that i am writing here",
+        "16/12/24",
+        false
+    )
+);
+all_list.tasks.push(
+    new Task(
+        "Dummy_3",
         "This is some testing data that i am writing here",
         "16/12/24",
         false
@@ -113,15 +131,26 @@ modalForm.addEventListener("submit", (e) => {
     if (status == false) return;
 });
 
+// Abstract the code
+// Add functionality to load My Day list on load
+
 const listArr = Array.from(
     document.querySelectorAll(".my-day,.important,.lists > div")
 );
 
+function activeList(listClass) {
+    const classList = listClass.split(" ");
+    if (classList.length == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 for (const list of listArr) {
     list.addEventListener("click", () => {
         const listClass = list.className;
-        const classList = listClass.split(" ");
-        if (classList.length == 2) {
+        if (activeList(listClass)) {
             return;
         } else {
             for (let key in all_list) {
