@@ -140,7 +140,7 @@ const listArr = Array.from(
 
 let currentlyActive;
 
-function activeList(classList) {
+function activeListCheck(classList) {
     if (classList.length == 2) {
         return true;
     } else {
@@ -148,20 +148,22 @@ function activeList(classList) {
     }
 }
 
+function activeListClass(listArr) {
+    for (let element of listArr) {
+        let elementClass = element.className;
+        let classArr = elementClass.split(" ");
+        if (activeListCheck(classArr)) {
+            return classArr[0];
+        }
+    }
+}
+
 for (const list of listArr) {
     list.addEventListener("click", () => {
-        for (let element of listArr) {
-            let elementClass = element.className;
-            let classArr = elementClass.split(" ");
-            if (classArr.length == 2) {
-                currentlyActive = classArr[0];
-                break;
-            }
-        }
-
         const listClass = list.className;
         const classList = listClass.split(" ");
-        if (classList.length == 2) {
+        currentlyActive = activeListClass(listArr);
+        if (activeListCheck(classList)) {
             return;
         } else {
             document
