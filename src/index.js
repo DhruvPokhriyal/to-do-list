@@ -286,14 +286,8 @@ importantButton.addEventListener("click", () => {
     else buttonImg.src = hollowStar;
 });
 
-const calendarButton = document.querySelector(".calendar-btn");
-calendarButton.addEventListener("click", () => {
-    const dateInput = calendarButton.querySelector("input");
-    dateInput.dispatchEvent(new Event("input"));
-});
-
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const taskTitle = taskForm.querySelector("#task-title").value;
-    const taskDesc = taskForm.querySelector("textarea");
+    const taskDesc = taskForm.querySelector("textarea").value;
 });

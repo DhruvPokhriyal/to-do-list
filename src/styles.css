@@ -337,11 +337,21 @@ hr {
 }
 
 #dueDate {
-    display: none;
+    background-color: var(--theme-col-2);
+    color: var(--font-color);
+    outline: none;
+    border: none;
 }
 
-#dueDate:active {
-    display: block;
+input[type="date"]::-webkit-datetime-edit {
+    color: transparent; /* Hides the placeholder text */
+    display: none;
+}
+input[type="date"]::-webkit-datetime-edit-text {
+    color: transparent; /* Ensures the entered value is visible */
+}
+input[type="date"]:focus::-webkit-datetime-edit {
+    color: black; /* Make text visible on focus */
 }
 
 ::placeholder {
