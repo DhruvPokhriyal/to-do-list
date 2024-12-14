@@ -349,6 +349,13 @@ hr {
 #dueDate + span {
     position: absolute;
     pointer-events: none;
+    filter: invert(80%) sepia(30%) saturate(7314%) hue-rotate(201deg)
+        brightness(95%) contrast(101%);
+}
+
+#dueDate:hover + span {
+    filter: invert(73%) sepia(71%) saturate(3005%) hue-rotate(203deg)
+        brightness(104%) contrast(103%);
 }
 
 input[type="date"]::-webkit-datetime-edit {
