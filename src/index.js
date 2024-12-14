@@ -92,14 +92,59 @@ class UIManager {
                     const taskElement = document.createElement("li");
                     taskElement.classList.add(`task-${taskNo}`);
 
-                    checkboxDisplay(taskElement, taskNo);
-                    taskTitleDisplay(taskElement, taskNo, entry);
-                    taskDueDisplay(taskElement, taskNo, entry);
-                    taskImpDisplay(taskElement, taskNo, entry);
+                    this.checkboxDisplay(taskElement, taskNo);
+                    this.taskTitleDisplay(taskElement, taskNo, entry);
+                    this.taskDueDisplay(taskElement, taskNo, entry);
+                    this.taskImpDisplay(taskElement, taskNo, entry);
                     taskList.appendChild(taskElement);
                 }
             }
         }
+    }
+    static checkboxDisplay(taskElement, taskNo) {
+        const checkboxLabel = document.createElement("label");
+        checkboxLabel.classList.add("checkbox");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("checkbox__input");
+        checkbox.id = `checkbox-${taskNo}`;
+        const checkboxSpan = document.createElement("span");
+        checkboxSpan.classList.add("checkbox__inner");
+        checkboxLabel.appendChild(checkbox);
+        checkboxLabel.appendChild(checkboxSpan);
+        taskElement.appendChild(checkboxLabel);
+    }
+    static taskTitleDisplay(taskElement, taskNo, entry) {
+        const taskTitle = document.createElement("div");
+        taskTitle.classList.add(`task-${taskNo}-title`);
+        taskTitle.classList.add("task-name");
+        const taskDesc = document.createElement("span");
+        taskDesc.classList.add(`task-${taskNo}-desc`);
+        taskDesc.classList.add("task-desc");
+        taskDesc.classList.add("hide");
+        taskTitle.textContent = entry.title;
+        taskDesc.textContent = entry.desc;
+        taskTitle.appendChild(taskDesc);
+        taskElement.appendChild(taskTitle);
+    }
+    static taskDueDisplay(taskElement, taskNo, entry) {
+        const taskDue = document.createElement("div");
+        taskDue.classList.add(`task-${taskNo}-date`, "task-date");
+        taskDue.textContent = entry.dueDate;
+        taskElement.appendChild(taskDue);
+    }
+    static taskImpDisplay(taskElement, taskNo, entry) {
+        const taskImp = document.createElement("div");
+        taskImp.classList.add(`task-${taskNo}-importance`, "task-imp");
+        const impImg = document.createElement("img");
+        impImg.height = "20";
+        if (entry.importance == true) {
+            impImg.src = filledStar;
+        } else {
+            impImg.src = hollowStar;
+        }
+        taskImp.appendChild(impImg);
+        taskElement.appendChild(taskImp);
     }
 }
 
@@ -201,55 +246,6 @@ function activeListClass(listArr) {
             return classArr[0];
         }
     }
-}
-
-function checkboxDisplay(taskElement, taskNo) {
-    const checkboxLabel = document.createElement("label");
-    checkboxLabel.classList.add("checkbox");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.classList.add("checkbox__input");
-    checkbox.id = `checkbox-${taskNo}`;
-    const checkboxSpan = document.createElement("span");
-    checkboxSpan.classList.add("checkbox__inner");
-    checkboxLabel.appendChild(checkbox);
-    checkboxLabel.appendChild(checkboxSpan);
-    taskElement.appendChild(checkboxLabel);
-}
-
-function taskTitleDisplay(taskElement, taskNo, entry) {
-    const taskTitle = document.createElement("div");
-    taskTitle.classList.add(`task-${taskNo}-title`);
-    taskTitle.classList.add("task-name");
-    const taskDesc = document.createElement("span");
-    taskDesc.classList.add(`task-${taskNo}-desc`);
-    taskDesc.classList.add("task-desc");
-    taskDesc.classList.add("hide");
-    taskTitle.textContent = entry.title;
-    taskDesc.textContent = entry.desc;
-    taskTitle.appendChild(taskDesc);
-    taskElement.appendChild(taskTitle);
-}
-
-function taskDueDisplay(taskElement, taskNo, entry) {
-    const taskDue = document.createElement("div");
-    taskDue.classList.add(`task-${taskNo}-date`, "task-date");
-    taskDue.textContent = entry.dueDate;
-    taskElement.appendChild(taskDue);
-}
-
-function taskImpDisplay(taskElement, taskNo, entry) {
-    const taskImp = document.createElement("div");
-    taskImp.classList.add(`task-${taskNo}-importance`, "task-imp");
-    const impImg = document.createElement("img");
-    impImg.height = "20";
-    if (entry.importance == true) {
-        impImg.src = filledStar;
-    } else {
-        impImg.src = hollowStar;
-    }
-    taskImp.appendChild(impImg);
-    taskElement.appendChild(taskImp);
 }
 
 function activeListSetup(list, listArr) {
