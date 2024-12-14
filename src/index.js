@@ -111,8 +111,44 @@ for (const list of listArr) {
             for (let key in all_list) {
                 let temp = key.replace(/\s+/g, "_");
                 if (temp == listClass) {
+                    const reqList = all_list[key];
                     const taskList = document.querySelector(".task-list");
                     taskList.innerHTML = "";
+                    for (let i = 0; i < reqList.length; i++) {
+                        let taskNo = i + 1;
+                        const taskElement = document.createElement("li");
+                        taskElement.classList.add(`task-${taskNo}`);
+
+                        const checkboxLabel = document.createElement("label");
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.classList.add("checkbox__input");
+                        checkbox.id = `checkbox-${taskNo}`;
+                        const checkboxSpan = document.createElement("span");
+                        checkboxSpan.classList.add("checkbox__inner");
+
+                        const taskTitle = document.createElement("div");
+                        taskTitle.classList.add(`task-${taskNo}-title`);
+                        taskTitle.classList.add("task-name");
+                        const taskDesc = document.createElement("span");
+                        taskDesc.classList.add(`task-${taskNo}-desc`);
+                        taskDesc.classList.add("task-desc");
+                        taskDesc.classList.add("hide");
+
+                        const taskDue = document.createElement("div");
+                        taskDue.classList.add(
+                            `task-${taskNo}-date`,
+                            "task-date"
+                        );
+
+                        const taskImp = document.createElement("div");
+                        taskImp.classList.add(
+                            `task-${taskNo}-importance`,
+                            "task-imp"
+                        );
+                        const impImg = document.querySelector("img");
+                        impImg.height = "20";
+                    }
                 }
             }
         }
