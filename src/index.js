@@ -6,8 +6,6 @@ import calendar from "./assets/images/calendar.svg";
 
 // Add functionality to retrieve data from local storage and add data into local storage
 
-const all_list = { my_day: [], important: [], tasks: [] };
-
 const isImportant = false;
 
 let currentlyActive;
@@ -25,13 +23,14 @@ class Task {
 }
 
 class DataManager {
+    static all_list = { my_day: [], important: [], tasks: [] };
     static uniqueListCheck(listName, temp, modalForm) {
         if (!listName) {
             alert("List name cannot be empty");
             modalForm.reset();
             return false;
         }
-        for (const key in all_list) {
+        for (const key in this.all_list) {
             if (listName == key) {
                 alert("List name already exist.");
                 modalForm.reset();
@@ -47,7 +46,7 @@ class DataManager {
         return true;
     }
     static createNewList(listName) {
-        all_list[listName] = [];
+        this.all_list[listName] = [];
     }
 }
 
@@ -80,10 +79,10 @@ class UIManager {
             .querySelector("." + currentlyActive)
             .classList.remove("active");
         list.classList.add("active");
-        for (let key in all_list) {
+        for (let key in DataManager.all_list) {
             let temp = key.replace(/\s+/g, "_");
             if (temp == listClass) {
-                const reqList = all_list[key];
+                const reqList = DataManager.all_list[key];
                 const taskList = document.querySelector(".task-list");
                 taskList.innerHTML = "";
                 for (let i = 0; i < reqList.length; i++) {
@@ -150,7 +149,7 @@ class UIManager {
 
 // Testing info
 
-all_list.important.push(
+DataManager.all_list.important.push(
     new Task(
         "Dummy_1",
         "This is some testing data that i am writing here",
@@ -158,7 +157,7 @@ all_list.important.push(
         false
     )
 );
-all_list.my_day.push(
+DataManager.all_list.my_day.push(
     new Task(
         "Dummy_2",
         "This is some testing data that i am writing here",
@@ -166,7 +165,7 @@ all_list.my_day.push(
         false
     )
 );
-all_list.tasks.push(
+DataManager.all_list.tasks.push(
     new Task(
         "Dummy_3",
         "This is some testing data that i am writing here",
@@ -196,7 +195,7 @@ closeButton.addEventListener("click", () => {
 
 function deleteButtonFunctionality(listName, listContainer, lists) {
     lists.removeChild(listContainer);
-    delete all_list[listName];
+    delete DataManager.all_list[listName];
 }
 
 function addNewList(listName, temp, modalForm) {
