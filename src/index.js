@@ -10,6 +10,10 @@ const all_list = { my_day: [], important: [], tasks: [] };
 
 const isImportant = false;
 
+let currentlyActive;
+
+let listArr = getAllList();
+
 class Task {
     constructor(title, desc, dueDate, importance) {
         this.status = false;
@@ -113,13 +117,20 @@ function addListInDOM(listName, temp, modalForm) {
     );
     modalForm.reset();
     modal.close();
+    return listContainer;
 }
 
 function addNewList(listName, temp, modalForm) {
     let unique = uniqueListCheck(listName, temp, modalForm);
     if (unique == false) return false;
     all_list[listName] = [];
-    addListInDOM(listName, temp, modalForm);
+    let listElement = addListInDOM(listName, temp, modalForm);
+    // Get all list
+    listElement.addEventListener("click", () => {
+        listArr = getAllList();
+        activeListSetup(listElement, listArr);
+    });
+
     return true;
 }
 
@@ -134,11 +145,11 @@ modalForm.addEventListener("submit", (e) => {
 // Abstract the code
 // Add functionality to load My Day list on load
 
-const listArr = Array.from(
-    document.querySelectorAll(".my_day,.important,.lists > div")
-);
-
-let currentlyActive;
+function getAllList() {
+    return Array.from(
+        document.querySelectorAll(".my_day,.important,.lists > div")
+    );
+}
 
 function activeListCheck(classList) {
     if (classList.length == 2) {
@@ -220,16 +231,20 @@ function activeListDOM(list, listClass, currentlyActive) {
     }
 }
 
+function activeListSetup(list, listArr) {
+    const listClass = list.className;
+    const classList = listClass.split(" ");
+    currentlyActive = activeListClass(listArr);
+    if (activeListCheck(classList)) {
+        return;
+    } else {
+        activeListDOM(list, listClass, currentlyActive);
+    }
+}
+
 for (const list of listArr) {
     list.addEventListener("click", () => {
-        const listClass = list.className;
-        const classList = listClass.split(" ");
-        currentlyActive = activeListClass(listArr);
-        if (activeListCheck(classList)) {
-            return;
-        } else {
-            activeListDOM(list, listClass, currentlyActive);
-        }
+        activeListSetup(list, listArr);
     });
 }
 
