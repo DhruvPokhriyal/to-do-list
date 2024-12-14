@@ -24,7 +24,32 @@ class Task {
     }
 }
 
-class DataManager {}
+class DataManager {
+    static uniqueListCheck(listName, temp, modalForm) {
+        if (!listName) {
+            alert("List name cannot be empty");
+            modalForm.reset();
+            return false;
+        }
+        for (const key in all_list) {
+            if (listName == key) {
+                alert("List name already exist.");
+                modalForm.reset();
+                return false;
+            }
+        }
+
+        if (!temp) {
+            alert("Invalid Name");
+            modalForm.reset();
+            return false;
+        }
+        return true;
+    }
+    static createNewList(listName) {
+        all_list[listName] = [];
+    }
+}
 
 class UIManager {
     static addListInDOM(listName, temp, modalForm) {
@@ -124,37 +149,15 @@ closeButton.addEventListener("click", () => {
     modal.close();
 });
 
-function uniqueListCheck(listName, temp, modalForm) {
-    if (!listName) {
-        alert("List name cannot be empty");
-        modalForm.reset();
-        return false;
-    }
-    for (const key in all_list) {
-        if (listName == key) {
-            alert("List name already exist.");
-            modalForm.reset();
-            return false;
-        }
-    }
-
-    if (!temp) {
-        alert("Invalid Name");
-        modalForm.reset();
-        return false;
-    }
-    return true;
-}
-
 function deleteButtonFunctionality(listName, listContainer, lists) {
     lists.removeChild(listContainer);
     delete all_list[listName];
 }
 
 function addNewList(listName, temp, modalForm) {
-    let unique = uniqueListCheck(listName, temp, modalForm);
+    let unique = DataManager.uniqueListCheck(listName, temp, modalForm);
     if (unique == false) return false;
-    all_list[listName] = [];
+    DataManager.createNewList(listName);
     let listElement = UIManager.addListInDOM(listName, temp, modalForm);
     // Get all list
     listElement.addEventListener("click", () => {
