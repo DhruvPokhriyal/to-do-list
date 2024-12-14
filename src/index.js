@@ -280,9 +280,16 @@ const taskForm = document.querySelector("#taskForm");
 
 const importantButton = document.querySelector(".imp-icon-hollow-btn");
 importantButton.addEventListener("click", () => {
-    isImportant = true;
+    isImportant = 1 - isImportant;
     const buttonImg = importantButton.querySelector("img");
-    buttonImg.src = filledStar;
+    if (isImportant) buttonImg.src = filledStar;
+    else buttonImg.src = hollowStar;
+});
+
+const calendarButton = document.querySelector(".calendar-btn");
+calendarButton.addEventListener("click", () => {
+    const dateInput = calendarButton.querySelector("input");
+    dateInput.dispatchEvent(new Event("input"));
 });
 
 taskForm.addEventListener("submit", (e) => {

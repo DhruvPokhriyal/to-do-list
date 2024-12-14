@@ -340,6 +340,10 @@ hr {
     display: none;
 }
 
+#dueDate:active {
+    display: block;
+}
+
 ::placeholder {
     color: var(--font-color);
     opacity: 0.9;
