@@ -24,6 +24,60 @@ class Task {
     }
 }
 
+class DataManager {}
+
+class UIManager {
+    static addListInDOM(listName, temp, modalForm) {
+        const listContainer = document.createElement("div");
+        listContainer.classList.add(temp);
+        listContainer.textContent = listName;
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete");
+        deleteButton.type = "button";
+        const deleteImg = document.createElement("img");
+        deleteImg.src = binImage;
+        deleteImg.height = "20";
+        deleteImg.alt = "Delete Icon";
+        deleteButton.appendChild(deleteImg);
+        listContainer.appendChild(deleteButton);
+        lists.appendChild(listContainer);
+        deleteButton.addEventListener(
+            "click",
+            deleteButtonFunctionality.bind(null, listName, listContainer, lists)
+        );
+        modalForm.reset();
+        modal.close();
+        return listContainer;
+    }
+
+    static activeListDOM(list, listClass, currentlyActive) {
+        document
+            .querySelector("." + currentlyActive)
+            .classList.remove("active");
+        list.classList.add("active");
+        for (let key in all_list) {
+            let temp = key.replace(/\s+/g, "_");
+            if (temp == listClass) {
+                const reqList = all_list[key];
+                const taskList = document.querySelector(".task-list");
+                taskList.innerHTML = "";
+                for (let i = 0; i < reqList.length; i++) {
+                    let entry = reqList[i];
+                    let taskNo = i + 1;
+                    const taskElement = document.createElement("li");
+                    taskElement.classList.add(`task-${taskNo}`);
+
+                    checkboxDisplay(taskElement, taskNo);
+                    taskTitleDisplay(taskElement, taskNo, entry);
+                    taskDueDisplay(taskElement, taskNo, entry);
+                    taskImpDisplay(taskElement, taskNo, entry);
+                    taskList.appendChild(taskElement);
+                }
+            }
+        }
+    }
+}
+
 // Testing info
 
 all_list.important.push(
@@ -97,34 +151,11 @@ function deleteButtonFunctionality(listName, listContainer, lists) {
     delete all_list[listName];
 }
 
-function addListInDOM(listName, temp, modalForm) {
-    const listContainer = document.createElement("div");
-    listContainer.classList.add(temp);
-    listContainer.textContent = listName;
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete");
-    deleteButton.type = "button";
-    const deleteImg = document.createElement("img");
-    deleteImg.src = binImage;
-    deleteImg.height = "20";
-    deleteImg.alt = "Delete Icon";
-    deleteButton.appendChild(deleteImg);
-    listContainer.appendChild(deleteButton);
-    lists.appendChild(listContainer);
-    deleteButton.addEventListener(
-        "click",
-        deleteButtonFunctionality.bind(null, listName, listContainer, lists)
-    );
-    modalForm.reset();
-    modal.close();
-    return listContainer;
-}
-
 function addNewList(listName, temp, modalForm) {
     let unique = uniqueListCheck(listName, temp, modalForm);
     if (unique == false) return false;
     all_list[listName] = [];
-    let listElement = addListInDOM(listName, temp, modalForm);
+    let listElement = UIManager.addListInDOM(listName, temp, modalForm);
     // Get all list
     listElement.addEventListener("click", () => {
         listArr = getAllList();
@@ -218,31 +249,6 @@ function taskImpDisplay(taskElement, taskNo, entry) {
     taskElement.appendChild(taskImp);
 }
 
-function activeListDOM(list, listClass, currentlyActive) {
-    document.querySelector("." + currentlyActive).classList.remove("active");
-    list.classList.add("active");
-    for (let key in all_list) {
-        let temp = key.replace(/\s+/g, "_");
-        if (temp == listClass) {
-            const reqList = all_list[key];
-            const taskList = document.querySelector(".task-list");
-            taskList.innerHTML = "";
-            for (let i = 0; i < reqList.length; i++) {
-                let entry = reqList[i];
-                let taskNo = i + 1;
-                const taskElement = document.createElement("li");
-                taskElement.classList.add(`task-${taskNo}`);
-
-                checkboxDisplay(taskElement, taskNo);
-                taskTitleDisplay(taskElement, taskNo, entry);
-                taskDueDisplay(taskElement, taskNo, entry);
-                taskImpDisplay(taskElement, taskNo, entry);
-                taskList.appendChild(taskElement);
-            }
-        }
-    }
-}
-
 function activeListSetup(list, listArr) {
     const listClass = list.className;
     const classList = listClass.split(" ");
@@ -250,7 +256,7 @@ function activeListSetup(list, listArr) {
     if (activeListCheck(classList)) {
         return;
     } else {
-        activeListDOM(list, listClass, currentlyActive);
+        UIManager.activeListDOM(list, listClass, currentlyActive);
     }
 }
 
