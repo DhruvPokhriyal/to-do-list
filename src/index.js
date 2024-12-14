@@ -260,6 +260,14 @@ function activeListSetup(list, listArr) {
     }
 }
 
+window.onload = () => {
+    UIManager.activeListDOM(
+        document.querySelector(".my_day"),
+        "my_day",
+        "my_day"
+    );
+};
+
 for (const list of listArr) {
     list.addEventListener("click", () => {
         activeListSetup(list, listArr);
