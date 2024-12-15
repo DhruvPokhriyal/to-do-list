@@ -99,7 +99,8 @@ class UIManager {
                     const taskElement = document.createElement("li");
                     taskElement.classList.add(`task-${taskNo}`);
 
-                    this.checkboxDisplay(taskElement, taskNo, i, reqList);
+                    console.log(reqList);
+                    this.checkboxDisplay(taskElement, taskNo, entry, reqList);
                     this.taskTitleDisplay(taskElement, taskNo, entry);
                     this.taskDueDisplay(taskElement, taskNo, entry);
                     this.taskImpDisplay(taskElement, taskNo, entry);
@@ -108,7 +109,7 @@ class UIManager {
             }
         }
     }
-    static checkboxDisplay(taskElement, taskNo, index, reqList) {
+    static checkboxDisplay(taskElement, taskNo, entry, reqList) {
         const checkboxLabel = document.createElement("label");
         checkboxLabel.classList.add("checkbox");
         const checkbox = document.createElement("input");
@@ -120,14 +121,18 @@ class UIManager {
         checkboxLabel.appendChild(checkbox);
         checkboxLabel.appendChild(checkboxSpan);
         taskElement.appendChild(checkboxLabel);
-        checkbox.addEventListener("change", () => {
-            if (checkbox.checked) {
-                setTimeout(() => {
-                    taskElement.parentNode.removeChild(taskElement);
-                }, 300);
-                reqList.splice(index, 1);
-            }
-        });
+        if (reqList) {
+            checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                    setTimeout(() => {
+                        taskElement.parentNode.removeChild(taskElement);
+                    }, 300);
+
+                    reqList.splice(reqList.indexOf(entry), 1);
+                    console.log(reqList);
+                }
+            });
+        }
     }
     static taskTitleDisplay(taskElement, taskNo, entry) {
         const taskTitle = document.createElement("div");
@@ -351,5 +356,23 @@ taskForm.addEventListener("submit", (e) => {
     UIManager.taskDueDisplay(taskElement, taskNo, entry);
     UIManager.taskImpDisplay(taskElement, taskNo, entry);
     taskList.appendChild(taskElement);
+    const checkbox = taskElement.querySelector("input");
+    checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+            setTimeout(() => {
+                taskElement.parentNode.removeChild(taskElement);
+            }, 300);
+            let index;
+            for (let i = 0; i < curList.length; i++) {
+                let rec = curList[i];
+                if (rec.title == taskTitle) {
+                    index = i;
+                    break;
+                }
+            }
+            curList.splice(index, 1);
+            console.log(curList);
+        }
+    });
     taskForm.reset();
 });
