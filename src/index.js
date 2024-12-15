@@ -204,6 +204,13 @@ closeButton.addEventListener("click", () => {
 function deleteButtonFunctionality(listName, listContainer, lists) {
     lists.removeChild(listContainer);
     delete DataManager.all_list[listName];
+    if (currentlyActive == null) {
+        UIManager.activeListDOM(
+            document.querySelector(".my_day"),
+            "my_day",
+            "my_day"
+        );
+    }
 }
 
 function addNewList(listName, temp, modalForm) {
