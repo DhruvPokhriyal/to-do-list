@@ -205,6 +205,7 @@ function deleteButtonFunctionality(listName, listContainer, lists) {
     lists.removeChild(listContainer);
     delete DataManager.all_list[listName];
     if (currentlyActive == null) {
+        currentlyActive = "my_day";
         UIManager.activeListDOM(
             document.querySelector(".my_day"),
             "my_day",
@@ -283,6 +284,7 @@ function activeListSetup(list, listArr) {
 }
 
 window.onload = () => {
+    currentlyActive = "my_day";
     UIManager.activeListDOM(
         document.querySelector(".my_day"),
         "my_day",
@@ -313,11 +315,33 @@ importantButton.addEventListener("click", () => {
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const taskTitle = taskForm.querySelector("#task-title").value;
-    const taskDesc = taskForm.querySelector("textarea").value;
+    let taskDesc = taskForm.querySelector("textarea").value;
+    if (taskDesc == "") taskDesc = "No Description";
     const taskDueDate = taskForm.querySelector("#dueDate").value;
     if (taskTitle.replace(" ", "").trim() == "") {
         alert("Task title cannot be empty");
         taskForm.reset();
         return;
     }
+    // if (currentlyActive == null) {
+    //     alert("Invalid Action");
+    //     alert("No List is selected");
+    //     taskForm.reset();
+    //     return;
+    // }
+    currentlyActive = currentlyActive || "my_day";
+    const curList = DataManager.all_list[currentlyActive];
+    const entry = new Task(taskTitle, taskDesc, taskDueDate, isImportant);
+    const taskList = document.querySelector(".task-list");
+    curList.push(entry);
+    let taskNo = curList.length;
+    const taskElement = document.createElement("li");
+    taskElement.classList.add(`task-${taskNo}`);
+
+    UIManager.checkboxDisplay(taskElement, taskNo);
+    UIManager.taskTitleDisplay(taskElement, taskNo, entry);
+    UIManager.taskDueDisplay(taskElement, taskNo, entry);
+    UIManager.taskImpDisplay(taskElement, taskNo, entry);
+    taskList.appendChild(taskElement);
+    taskForm.reset();
 });
