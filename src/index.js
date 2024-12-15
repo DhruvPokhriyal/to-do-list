@@ -55,6 +55,7 @@ class DataManager {
     }
     static createNewList(temp) {
         all_list[temp] = [];
+        localStorage.data = JSON.stringify(all_list);
     }
 }
 
@@ -100,7 +101,6 @@ class UIManager {
                     const taskElement = document.createElement("li");
                     taskElement.classList.add(`task-${taskNo}`);
 
-                    console.log(reqList);
                     this.checkboxDisplay(taskElement, taskNo, entry, reqList);
                     this.taskTitleDisplay(taskElement, taskNo, entry);
                     this.taskDueDisplay(taskElement, taskNo, entry);
@@ -130,7 +130,6 @@ class UIManager {
                     }, 300);
 
                     reqList.splice(reqList.indexOf(entry), 1);
-                    console.log(reqList);
                 }
             });
         }
@@ -189,6 +188,7 @@ closeButton.addEventListener("click", () => {
 function deleteButtonFunctionality(listName, listContainer, lists) {
     lists.removeChild(listContainer);
     delete all_list[listName];
+    localStorage.data = JSON.stringify(all_list);
     if (currentlyActive == null) {
         currentlyActive = "my_day";
         UIManager.activeListDOM(
@@ -275,6 +275,10 @@ window.onload = () => {
         "my_day",
         "my_day"
     );
+    let cache = localStorage.data;
+    if (cache != null) {
+        all_list = JSON.parse(cache);
+    }
 };
 
 for (const list of listArr) {
@@ -313,6 +317,7 @@ taskForm.addEventListener("submit", (e) => {
     const entry = new Task(taskTitle, taskDesc, taskDueDate, isImportant);
     const taskList = document.querySelector(".task-list");
     curList.push(entry);
+    localStorage.data = JSON.stringify(all_list);
     let taskNo = curList.length;
     const taskElement = document.createElement("li");
     taskElement.classList.add(`task-${taskNo}`);
@@ -337,7 +342,7 @@ taskForm.addEventListener("submit", (e) => {
                 }
             }
             curList.splice(index, 1);
-            console.log(curList);
+            localStorage.data = JSON.stringify(all_list);
         }
     });
     taskForm.reset();
