@@ -307,12 +307,6 @@ taskForm.addEventListener("submit", (e) => {
         taskForm.reset();
         return;
     }
-    // if (currentlyActive == null) {
-    //     alert("Invalid Action");
-    //     alert("No List is selected");
-    //     taskForm.reset();
-    //     return;
-    // }
     currentlyActive = currentlyActive || "my_day";
     const curList = DataManager.all_list[currentlyActive];
     const entry = new Task(taskTitle, taskDesc, taskDueDate, isImportant);
