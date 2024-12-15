@@ -210,6 +210,12 @@ function deleteButtonFunctionality(listName, listContainer, lists) {
             "my_day",
             "my_day"
         );
+    } else {
+        UIManager.activeListDOM(
+            document.querySelector("." + currentlyActive),
+            currentlyActive,
+            currentlyActive
+        );
     }
 }
 
