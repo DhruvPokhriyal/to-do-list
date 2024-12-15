@@ -99,7 +99,7 @@ class UIManager {
                     const taskElement = document.createElement("li");
                     taskElement.classList.add(`task-${taskNo}`);
 
-                    this.checkboxDisplay(taskElement, taskNo);
+                    this.checkboxDisplay(taskElement, taskNo, i, reqList);
                     this.taskTitleDisplay(taskElement, taskNo, entry);
                     this.taskDueDisplay(taskElement, taskNo, entry);
                     this.taskImpDisplay(taskElement, taskNo, entry);
@@ -108,7 +108,7 @@ class UIManager {
             }
         }
     }
-    static checkboxDisplay(taskElement, taskNo) {
+    static checkboxDisplay(taskElement, taskNo, index, reqList) {
         const checkboxLabel = document.createElement("label");
         checkboxLabel.classList.add("checkbox");
         const checkbox = document.createElement("input");
@@ -125,6 +125,7 @@ class UIManager {
                 setTimeout(() => {
                     taskElement.parentNode.removeChild(taskElement);
                 }, 300);
+                reqList.splice(index, 1);
             }
         });
     }
