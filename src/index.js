@@ -12,6 +12,13 @@ let currentlyActive;
 
 let listArr = getAllList();
 
+function toTitleCase(str) {
+    return str.replace(
+        /\w\S*/g,
+        (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+    );
+}
+
 class Task {
     constructor(title, desc, dueDate, importance) {
         this.status = false;
@@ -31,7 +38,7 @@ class DataManager {
             return false;
         }
         for (const key in this.all_list) {
-            if (listName.toLowerCase() == key) {
+            if (listName == key && this.all_list[listName] != undefined) {
                 alert("List name already exist.");
                 modalForm.reset();
                 return false;
@@ -46,7 +53,7 @@ class DataManager {
         return true;
     }
     static createNewList(listName) {
-        this.all_list[listName.toLowerCase()] = [];
+        this.all_list[listName] = [];
     }
 }
 
@@ -54,7 +61,7 @@ class UIManager {
     static addListInDOM(listName, temp, modalForm) {
         const listContainer = document.createElement("div");
         listContainer.classList.add(temp);
-        listContainer.textContent = listName;
+        listContainer.textContent = toTitleCase(listName);
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("delete");
         deleteButton.type = "button";
@@ -75,9 +82,10 @@ class UIManager {
     }
 
     static activeListDOM(list, listClass, currentlyActive) {
-        document
-            .querySelector("." + currentlyActive)
-            .classList.remove("active");
+        const activeElement = document.querySelector("." + currentlyActive);
+        if (activeElement) {
+            activeElement.classList.remove("active");
+        }
         list.classList.add("active");
         for (let key in DataManager.all_list) {
             let temp = key.replace(/\s+/g, "_");
@@ -214,7 +222,10 @@ function addNewList(listName, temp, modalForm) {
 
 modalForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const listName = modalForm.querySelector("input").value.trim();
+    const listName = modalForm
+        .querySelector("input")
+        .value.trim()
+        .toLowerCase();
     const temp = listName.toLowerCase().replace(/\s+/g, "_");
     let status = addNewList(listName, temp, modalForm);
     if (status == false) return;
