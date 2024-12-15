@@ -6,6 +6,8 @@ import calendar from "./assets/images/calendar.svg";
 
 // Add functionality to retrieve data from local storage and add data into local storage
 
+let all_list = { my_day: [], important: [], tasks: [] };
+
 let isImportant = false;
 
 let currentlyActive;
@@ -30,15 +32,14 @@ class Task {
 }
 
 class DataManager {
-    static all_list = { my_day: [], important: [], tasks: [] };
     static uniqueListCheck(listName, temp, modalForm) {
         if (!listName) {
             alert("List name cannot be empty");
             modalForm.reset();
             return false;
         }
-        for (const key in this.all_list) {
-            if (listName == key && this.all_list[listName] != undefined) {
+        for (const key in all_list) {
+            if (listName == key && all_list[listName] != undefined) {
                 alert("List name already exist.");
                 modalForm.reset();
                 return false;
@@ -53,7 +54,7 @@ class DataManager {
         return true;
     }
     static createNewList(temp) {
-        this.all_list[temp] = [];
+        all_list[temp] = [];
     }
 }
 
@@ -87,10 +88,10 @@ class UIManager {
             activeElement.classList.remove("active");
         }
         list.classList.add("active");
-        for (let key in DataManager.all_list) {
+        for (let key in all_list) {
             let temp = key.replace(/\s+/g, "_");
             if (temp == listClass) {
-                const reqList = DataManager.all_list[key];
+                const reqList = all_list[key];
                 const taskList = document.querySelector(".task-list");
                 taskList.innerHTML = "";
                 for (let i = 0; i < reqList.length; i++) {
@@ -187,7 +188,7 @@ closeButton.addEventListener("click", () => {
 
 function deleteButtonFunctionality(listName, listContainer, lists) {
     lists.removeChild(listContainer);
-    delete DataManager.all_list[listName];
+    delete all_list[listName];
     if (currentlyActive == null) {
         currentlyActive = "my_day";
         UIManager.activeListDOM(
@@ -308,7 +309,7 @@ taskForm.addEventListener("submit", (e) => {
         return;
     }
     currentlyActive = currentlyActive || "my_day";
-    const curList = DataManager.all_list[currentlyActive];
+    const curList = all_list[currentlyActive];
     const entry = new Task(taskTitle, taskDesc, taskDueDate, isImportant);
     const taskList = document.querySelector(".task-list");
     curList.push(entry);
