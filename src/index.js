@@ -31,7 +31,7 @@ class DataManager {
             return false;
         }
         for (const key in this.all_list) {
-            if (listName == key) {
+            if (listName.toLowerCase() == key) {
                 alert("List name already exist.");
                 modalForm.reset();
                 return false;
@@ -46,7 +46,7 @@ class DataManager {
         return true;
     }
     static createNewList(listName) {
-        this.all_list[listName] = [];
+        this.all_list[listName.toLowerCase()] = [];
     }
 }
 
@@ -215,7 +215,7 @@ function addNewList(listName, temp, modalForm) {
 modalForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const listName = modalForm.querySelector("input").value.trim();
-    const temp = listName.replace(/\s+/g, "_");
+    const temp = listName.toLowerCase().replace(/\s+/g, "_");
     let status = addNewList(listName, temp, modalForm);
     if (status == false) return;
 });
@@ -290,4 +290,5 @@ taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const taskTitle = taskForm.querySelector("#task-title").value;
     const taskDesc = taskForm.querySelector("textarea").value;
+    const taskDueDate = taskForm.querySelector("#dueDate").value;
 });
