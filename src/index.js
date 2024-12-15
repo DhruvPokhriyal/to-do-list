@@ -52,8 +52,8 @@ class DataManager {
         }
         return true;
     }
-    static createNewList(listName) {
-        this.all_list[listName] = [];
+    static createNewList(temp) {
+        this.all_list[temp] = [];
     }
 }
 
@@ -222,7 +222,7 @@ function deleteButtonFunctionality(listName, listContainer, lists) {
 function addNewList(listName, temp, modalForm) {
     let unique = DataManager.uniqueListCheck(listName, temp, modalForm);
     if (unique == false) return false;
-    DataManager.createNewList(listName);
+    DataManager.createNewList(temp);
     let listElement = UIManager.addListInDOM(listName, temp, modalForm);
     // Get all list
     listElement.addEventListener("click", () => {
@@ -315,4 +315,9 @@ taskForm.addEventListener("submit", (e) => {
     const taskTitle = taskForm.querySelector("#task-title").value;
     const taskDesc = taskForm.querySelector("textarea").value;
     const taskDueDate = taskForm.querySelector("#dueDate").value;
+    if (taskTitle.replace(" ", "").trim() == "") {
+        alert("Task title cannot be empty");
+        taskForm.reset();
+        return;
+    }
 });
