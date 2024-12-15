@@ -120,6 +120,13 @@ class UIManager {
         checkboxLabel.appendChild(checkbox);
         checkboxLabel.appendChild(checkboxSpan);
         taskElement.appendChild(checkboxLabel);
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                setTimeout(() => {
+                    taskElement.parentNode.removeChild(taskElement);
+                }, 300);
+            }
+        });
     }
     static taskTitleDisplay(taskElement, taskNo, entry) {
         const taskTitle = document.createElement("div");
