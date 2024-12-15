@@ -168,35 +168,6 @@ class UIManager {
     }
 }
 
-// Testing info
-
-DataManager.all_list.important.push(
-    new Task(
-        "Dummy_1",
-        "This is some testing data that i am writing here",
-        "16/12/24",
-        false
-    )
-);
-DataManager.all_list.my_day.push(
-    new Task(
-        "Dummy_2",
-        "This is some testing data that i am writing here",
-        "16/12/24",
-        false
-    )
-);
-DataManager.all_list.tasks.push(
-    new Task(
-        "Dummy_3",
-        "This is some testing data that i am writing here",
-        "16/12/24",
-        false
-    )
-);
-
-// Testing info ends
-
 // Sidebar
 const lists = document.querySelector(".lists");
 const modal = document.querySelector(".modal");
